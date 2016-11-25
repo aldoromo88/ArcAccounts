@@ -1,11 +1,11 @@
 <template>
 <div>
-  Accounts<br/> Mode : {{Mode}}
+  Mode : {{Mode}}
   <router-link to="Mole">
     Mole
   </router-link>
-  <router-link to="New">
-    New
+  <router-link to="New" tag="button" class="btn btn-success">
+    New Account
   </router-link>
   <router-link to="Edit">
     Edit
@@ -39,12 +39,24 @@ function validateMode(mode, router) {
 
 export default {
   data() {
-    let mode = this.$route.params.Action
+    let mode = this.$route.params.Mode
     validateMode(mode, this.$router);
 
     return {
       Mode: mode,
       CurrentAccount: _.clone(newAccPrototype)
+    }
+  },
+  computed: {
+    Title: function() {
+      switch (this.Mode) {
+        case 'New':
+          return 'Create Account';
+        case 'Edit':
+          return 'Edit Account';
+        default:
+          return 'Accounts';
+      }
     }
   },
   firebase: {
@@ -57,17 +69,17 @@ export default {
         return;
 
       this.Mode = mode;
+      this.CurrentId = to.params.Id;
     },
     Mode(to, from) {
       if (to == 'New') {
         this.CurrentAccount = _.clone(newAccPrototype);
         return;
       }
-
+    },
+    Title(to, from) {
+      this.$store.commit('TITLE_CHANGED', to);
     }
-  },
-  mounted: function() {
-    this.$store.commit('TITLE_CHANGED', 'Accounts');
   },
   components: {
     EditAccount,
@@ -75,4 +87,3 @@ export default {
   }
 }
 </script>
-t>

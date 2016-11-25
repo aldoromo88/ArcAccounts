@@ -12,6 +12,6 @@ export default [
 
   { path: '/Transactions', component: Transactions, meta: { RequiresAuth: true, ShowInMenu: true, Display: 'Transactions', Icon: 'fa-exchange' } },
 
-  { path: '/Accounts/:Mode/:Id?', component: Accounts, meta: { RequiresAuth: true} },
-  { path: '/Accounts', redirect: '/Accounts/All' , meta: { ShowInMenu: true, Display: 'Accounts', Icon: 'fa-bank' }},
+  { path: '/Accounts/:Mode/:Id?', component: Accounts, meta: { RequiresAuth: true } },
+  { path: '/Accounts', redirect: '/Accounts/All', meta: { ShowInMenu: true, Display: 'Accounts', Icon: 'fa-bank' } },
 ];

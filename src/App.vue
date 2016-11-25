@@ -37,9 +37,7 @@ export default {
   computed: {
     Title: function() {
       return this.$store.getters.Title;
-    }
-  },
-  computed: {
+    },
     isAuthenticated: function() {
       return this.$store.getters.CurrentUser != null;
     }
