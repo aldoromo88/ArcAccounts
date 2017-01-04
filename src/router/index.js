@@ -9,7 +9,8 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   mode: 'history',
   routes,
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  base:'/ArcAccounts/'
 });
 
 router.beforeEach((to, from, next) => {
