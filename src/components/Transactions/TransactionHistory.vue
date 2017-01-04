@@ -6,11 +6,11 @@
 export default {
   data() {
     return {
-      Title: 'Transactions'
+      Title: 'Transaction history'
     }
   },
   mounted: function() {
-    this.$store.commit('TITLE_CHANGED', 'Transactions');
+    this.$store.commit('TITLE_CHANGED', this.Title);
   }
 }
 </script>

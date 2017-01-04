@@ -1,8 +1,10 @@
 import Home from 'components/Hello';
+import DynamicLoader from 'components/DynamicLoader';
 
-const Accounts = resolve => require(['components/Accounts'], resolve);
-const Balance = resolve => require(['components/Balance'], resolve);
-const Transactions = resolve => require(['components/Transactions'], resolve);
+const Accounts = resolve => require(['components/Accounts/Accounts'], resolve);
+const Balance = resolve => require(['components/Balance/Balance'], resolve);
+const NewTransaction = resolve => require(['components/Transactions/NewTransaction'], resolve);
+//const TransactionHistory = resolve => require(['components/Transactions/TransactionHistory'], resolve);
 
 export default [
   { path: '/', redirect: '/Home' },
@@ -10,8 +12,11 @@ export default [
 
   { path: '/Balance', component: Balance, meta: { RequiresAuth: true, ShowInMenu: true, Display: 'Balance', Icon: 'fa-line-chart' } },
 
-  { path: '/Transactions', component: Transactions, meta: { RequiresAuth: true, ShowInMenu: true, Display: 'Transactions', Icon: 'fa-exchange' } },
+  { path: '/Transactions', redirect: '/Transactions/New', meta: { ShowInMenu: true, Display: 'Transactions', Icon: 'fa-exchange' } },
+  //{ path: '/Transactions/History', component: TransactionHistory, meta: { RequiresAuth: true } },
+  { path: '/Transactions/New', component: NewTransaction, meta: { RequiresAuth: true } },
 
-  { path: '/Accounts/:Mode/:Id?', component: Accounts, meta: { RequiresAuth: true } },
-  { path: '/Accounts', redirect: '/Accounts/All', meta: { ShowInMenu: true, Display: 'Accounts', Icon: 'fa-bank' } },
+  { path: '/Accounts/:Mode?/:Id?', component: Accounts, meta: { RequiresAuth: true } },
+  { path: '/Accounts', redirect: '/Accounts/All', component: Accounts, meta: { ShowInMenu: true, Display: 'Accounts', Icon: 'fa-bank' } },
+  { path: '/:ComponentName', component: DynamicLoader },
 ];

@@ -14,7 +14,8 @@ const state = {
 };
 
 const getters = {
-  CurrentUser: state => state.CurrentUser
+  CurrentUser: state => state.CurrentUser,
+  Uid: state=> state.CurrentUser?state.CurrentUser.uid:undefined
 }
 
 const actions = {
